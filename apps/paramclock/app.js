@@ -57,7 +57,7 @@ let draw = function(){
     console.log(a, b);
     let pos_x1 = Math.floor(60*trochoid_x1(0,a,b)+OFSET_X);
     let pos_y1 = Math.floor(60*trochoid_x2(0,a,b)+OFSET_Y);
-    g.setColor(0.2, 0.2, 1.0);
+    g.setColor(0.0, 1.0, 0.0);
 
     for(i=0; i<SIZE; i+=1){
       let t=i*BIN;
@@ -103,7 +103,7 @@ let draw = function(){
 
     let pos_x1 = Math.floor(60*func_x(0,a,b)+OFSET_X);
     let pos_y1 = Math.floor(60*func_y(0,a,b)+OFSET_Y);
-    g.setColor(0, 1, 0);
+    g.setColor(1, 1, 1);
 
     for(i=0; i<SIZE; i+=1){
       let t=i*BIN;
@@ -119,28 +119,29 @@ let draw = function(){
   //console.log("draw");
   //console.log(date);
 
-  g.setColor(0.5, 0.5, 0.5);
+  g.setColor(1, 1, 1);
   let hhour = hour-12;
   for(i=0; i<13; i+=1){
     let x = i*12+16;
     let pos1_y, pos2_y;
     if(i%2){
-      pos1_y = 160;
-      pos2_y = 152;
+      pos1_y = 165;
+      pos2_y = 155;
     }else{
-      pos1_y = 163;
-      pos2_y = 150;
+      pos1_y = 168;
+      pos2_y = 152;
     }
     g.drawLine(x,pos1_y,x,pos2_y);
   }
-  g.drawLine(16,146,160,146);
-  g.drawLine(16,156,160,156);
-  g.drawLine(16,166,160,166);
+  g.drawLine(16,150,160,150);
+  g.drawLine(16,160,160,160);
+  g.drawLine(16,170,160,170);
   let xw = Math.floor(week*144+16);
   let xh = Math.floor((hhour*60+min)/720*144+16);
   let xm = Math.floor((min*60+sec)/3600*144+16);
-  g.drawLine(xw,146,xh,156);
-  g.drawLine(xh,156,xm,166);
+  g.drawLine(xw,150,xh,160);
+  g.drawLine(xh,160,xm,170);
+  g.drawLine(xm,170,xw,150);
 };
 setInterval(draw, 15000);
 
