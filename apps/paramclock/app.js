@@ -135,7 +135,7 @@ let draw = function(){
   }
 
   g.setColor(0.0, 0.13, 0.0);
-  g.fillRect(16, 150, 16+144*E.getBattery(), 170);
+  g.fillRect(16, 150, 16+144*E.getBattery()/100, 170);
 
 
   g.setColor(1, 1, 1);
