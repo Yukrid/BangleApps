@@ -167,6 +167,15 @@ Bangle.on('lcdPower',on=>{
   }
 });
 
+Bangle.on('backlight', function(on) {
+  if (on) {
+    disp_on = true;
+    draw();
+  } else {
+    disp_on = false;
+  }
+});
+
 Bangle.setUI("clock");
 Bangle.loadWidgets();
 draw();
