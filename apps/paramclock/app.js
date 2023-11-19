@@ -8,6 +8,8 @@ const MONTH_NUM = [-2, 1, -4, 3, -6, 5, -3, 2, -5, 4, -7, 6];
 let drawTimeout;
 let disp_on = true;
 
+g.drawRect(0, 0, 176, 176);
+
 function queueDraw() {
   let val;
   if(disp_on) val =  15000 - (Date.now() %  15000);
@@ -51,6 +53,10 @@ let draw = function(){
   g.reset();
   //console.log(g.theme.dark);
 
+  g.setColor(0, 0, 0);
+  g.fillRect(0, 0, 175, 175);
+  
+  
   let date = new Date();
   let date2 = new Date(date.getTime());
   date2.setMonth(date2.getMonth()+1, 0);
@@ -119,8 +125,8 @@ let draw = function(){
 
     for(i=0; i<SIZE; i+=1){
       let t=i*BIN;
-      let pos_x2 = Math.floor(56*func_x(t,a,b)+OFSET_X);
-      let pos_y2 = Math.floor(56*func_y(t,a,b)+OFSET_Y);
+      let pos_x2 = Math.floor(60*func_x(t,a,b)+OFSET_X);
+      let pos_y2 = Math.floor(60*func_y(t,a,b)+OFSET_Y);
       if(pos_x1 != pos_x2 || pos_y1 != pos_y2){
         g.drawLine(pos_x1,pos_y1,pos_x2,pos_y2);
         pos_x1=pos_x2;
@@ -145,34 +151,54 @@ let draw = function(){
     }
     g.drawLine(x,pos1_y,x,pos2_y);
   }
+  g.setColor(0.5, 0.5, 0.5);
   g.drawLine(16,150,160,150);
   g.drawLine(16,160,160,160);
   g.drawLine(16,170,160,170);
   let xw = Math.floor(week*144+16);
   let xh = Math.floor((hhour*60+min)/720*144+16);
   let xm = Math.floor((min*60+sec)/3600*144+16);
-  g.drawRect(xw-2, 148, xw+2, 152);
-  g.drawRect(xh-2, 158, xh+2, 162);
-  g.drawRect(xm-2, 168, xm+2, 172);
-  
+  g.setColor(1.0, 1.0, 1.0)
+  g.fillRect(xw-2, 148, xw+2, 152);
+  g.fillRect(xh-2, 158, xh+2, 162);
+  g.fillRect(xm-2, 168, xm+2, 172);
+  console.log(disp_on);
   queueDraw();
 };
+
+Bangle.setOptions({
+  lockTimeout: 60000,
+  backlightTimeout: 10000
+});
 
 Bangle.on('lcdPower',on=>{
   if (on) {
     disp_on = true;
+    console.log("ON");
     draw();
   } else {
     disp_on = false;
+    console.log("OFF");
   }
 });
-
+Bangle.on('lock', function(on) {
+  if (on) {
+    disp_on = true;
+    console.log("ON");
+    draw();
+  } else {
+    disp_on = false;
+    console.log("OFF");
+  }
+});
 Bangle.on('backlight', function(on) {
   if (on) {
     disp_on = true;
+    console.log("ON");
     draw();
   } else {
     disp_on = false;
+    console.log("OFF");
   }
 });
 
@@ -180,4 +206,3 @@ Bangle.setUI("clock");
 Bangle.loadWidgets();
 draw();
 Bangle.drawWidgets();
-
