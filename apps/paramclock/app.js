@@ -113,14 +113,14 @@ let draw = function(){
       func_y = lissajous_x1;
     }
 
-    let pos_x1 = Math.floor(60*func_x(0,a,b)+OFSET_X);
-    let pos_y1 = Math.floor(60*func_y(0,a,b)+OFSET_Y);
+    let pos_x1 = Math.floor(56*func_x(0,a,b)+OFSET_X);
+    let pos_y1 = Math.floor(56*func_y(0,a,b)+OFSET_Y);
     g.setColor(1, 1, 0);
 
     for(i=0; i<SIZE; i+=1){
       let t=i*BIN;
-      let pos_x2 = Math.floor(60*func_x(t,a,b)+OFSET_X);
-      let pos_y2 = Math.floor(60*func_y(t,a,b)+OFSET_Y);
+      let pos_x2 = Math.floor(56*func_x(t,a,b)+OFSET_X);
+      let pos_y2 = Math.floor(56*func_y(t,a,b)+OFSET_Y);
       if(pos_x1 != pos_x2 || pos_y1 != pos_y2){
         g.drawLine(pos_x1,pos_y1,pos_x2,pos_y2);
         pos_x1=pos_x2;
