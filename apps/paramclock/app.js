@@ -68,7 +68,7 @@ let draw = function(){
   let sec = date.getSeconds();
   let week = date.getDay();
   //console.log(month, day, last, hour, qhour, min, sec);
-
+  
   {
     let a = (last-(day+hour/24))/last;
     let b = MONTH_NUM[month-1];
@@ -90,30 +90,35 @@ let draw = function(){
 
   {
     let a;
-    let b = (60*(min+30)+sec)/3600;
+    let b;
     let func_x;
     let func_y;
 
     if(hour==0){
       a = 1;
+      b = (60*min+sec)/3600;
       func_x = sin_x1;
       func_y = sin_x2;
     }else if(qhour==0){
       if(hour<12){
         a = 6;
+        b = (60*(min+30)+sec)/3600;
         func_x = lissajous_x1;
         func_y = lissajous_x2;
       }else{
         a = 6;
+        b = (60*(min+30)+sec)/3600;
         func_x = lissajous_x2;
         func_y = lissajous_x1;
       }
     }else if(hour<12){
       a = qhour;
+      b = (60*(min+30)+sec)/3600;
       func_x = lissajous_x1;
       func_y = lissajous_x2;
     }else{
       a = qhour;
+      b = (60*(min+30)+sec)/3600;
       func_x = lissajous_x2;
       func_y = lissajous_x1;
     }
@@ -134,13 +139,14 @@ let draw = function(){
     }
   }
 
-  g.setColor(0.0, 0.13, 0.0);
-  let bat = E.getBattery();
+  g.setColor(0., 0.13, 0.);
+  let bat = E.getBattery()+50;
   g.fillRect(16, 171, 16+144*bat/100, 175);
 
 
   g.setColor(1, 1, 1);
-  let hhour = hour-12;
+  let hhour = hour;
+  if(hour>12) hhour -= 12;
   for(i=0; i<13; i+=1){
     let x = i*12+16;
     let pos1_y, pos2_y;
@@ -175,14 +181,11 @@ let draw = function(){
 Bangle.on('backlight', function(on) {
   if (on) {
     disp_on = true;
-    console.log("ON");
     draw();
   } else {
     disp_on = false;
-    console.log("OFF");
   }
 });
 
 Bangle.setUI("clock");
 draw();
-
