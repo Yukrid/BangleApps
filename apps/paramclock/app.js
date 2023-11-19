@@ -139,8 +139,8 @@ let draw = function(){
     }
   }
 
-  g.setColor(0., 0.13, 0.);
-  let bat = E.getBattery()+50;
+  g.setColor(0, 0.13, 0);
+  let bat = E.getBattery();
   g.fillRect(16, 171, 16+144*bat/100, 175);
 
 
