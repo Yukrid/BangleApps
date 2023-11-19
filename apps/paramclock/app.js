@@ -2,11 +2,13 @@ const N = 176;
 const BIN = 0.03;
 const SIZE = Math.floor(2.0*Math.PI/BIN)+1;
 const OFSET_X = 88.5;
-const OFSET_Y = 85;
+const OFSET_Y = 75;
 const MONTH_NUM = [-2, 1, -4, 3, -6, 5, -3, 2, -5, 4, -7, 6];
 
 let drawTimeout;
 let disp_on = true;
+
+g.drawRect(0, 0, 176, 176);
 
 function queueDraw() {
   let val;
@@ -47,7 +49,6 @@ function trochoid_x2(t,a,b){
 let draw = function(){
 
   g.clear(1);
-  Bangle.drawWidgets();
   g.reset();
   //console.log(g.theme.dark);
 
@@ -132,8 +133,10 @@ let draw = function(){
       }
     }
   }
-  //console.log("draw");
-  //console.log(date);
+
+  g.setColor(0.0, 0.13, 0.0);
+  g.fillRect(16, 150, 16+144*E.getBattery(), 170);
+
 
   g.setColor(1, 1, 1);
   let hhour = hour-12;
@@ -156,22 +159,29 @@ let draw = function(){
   let xw = Math.floor(week*144+16);
   let xh = Math.floor((hhour*60+min)/720*144+16);
   let xm = Math.floor((min*60+sec)/3600*144+16);
-  g.setColor(1.0, 1.0, 1.0)
+  g.setColor(1.0, 1.0, 1.0);
   g.fillRect(xw-2, 148, xw+2, 152);
   g.fillRect(xh-2, 158, xh+2, 162);
   g.fillRect(xm-2, 168, xm+2, 172);
+
   queueDraw();
 };
+
+
+  //console.log(date);
+
 
 Bangle.on('backlight', function(on) {
   if (on) {
     disp_on = true;
+    console.log("ON");
     draw();
   } else {
     disp_on = false;
+    console.log("OFF");
   }
 });
 
 Bangle.setUI("clock");
-Bangle.loadWidgets();
 draw();
+
