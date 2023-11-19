@@ -81,14 +81,16 @@ let draw = function(){
       a = 1;
       func_x = sin_x1;
       func_y = sin_x2;
-    }else if(qhour==0 && hour<12){
-      a = 6;
-      func_x = lissajous_x1;
-      func_y = lissajous_x2;
     }else if(qhour==0){
-      a = 6;
-      func_x = lissajous_x2;
-      func_y = lissajous_x1;
+      if(hour<12){
+        a = 6;
+        func_x = lissajous_x1;
+        func_y = lissajous_x2;
+      }else{
+        a = 6;
+        func_x = lissajous_x2;
+        func_y = lissajous_x1;
+      }
     }else if(hour<12){
       a = qhour;
       func_x = lissajous_x1;
