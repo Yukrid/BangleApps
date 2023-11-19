@@ -85,7 +85,7 @@ let draw = function(){
       a = 6;
       func_x = lissajous_x1;
       func_y = lissajous_x2;
-    }else if(hour==0){
+    }else if(qhour==0){
       a = 6;
       func_x = lissajous_x2;
       func_y = lissajous_x1;
