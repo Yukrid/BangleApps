@@ -118,8 +118,8 @@ let draw = function(){
       func_y = lissajous_x1;
     }
 
-    let pos_x1 = Math.floor(56*func_x(0,a,b)+OFSET_X);
-    let pos_y1 = Math.floor(56*func_y(0,a,b)+OFSET_Y);
+    let pos_x1 = Math.floor(60*func_x(0,a,b)+OFSET_X);
+    let pos_y1 = Math.floor(60*func_y(0,a,b)+OFSET_Y);
     g.setColor(1, 1, 0);
 
     for(i=0; i<SIZE; i+=1){
@@ -135,7 +135,8 @@ let draw = function(){
   }
 
   g.setColor(0.0, 0.13, 0.0);
-  g.fillRect(16, 150, 16+144*E.getBattery()/100, 170);
+  let bat = E.getBattery();
+  g.fillRect(16, 150, 16+144*bat/100, 170);
 
 
   g.setColor(1, 1, 1);
