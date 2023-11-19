@@ -168,7 +168,7 @@ let draw = function(){
 
 Bangle.setOptions({
   lockTimeout: 60000,
-  backlightTimeout: 10000
+  backlightTimeout: 20000
 });
 
 Bangle.on('lcdPower',on=>{
