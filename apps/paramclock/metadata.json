@@ -1,0 +1,14 @@
+{ "id": "paramclock",
+  "name": "Parametoric Clock",
+  "shortName":"Param Clock",
+  "version":"0.01",
+  "description": "Clock displaying parametric functions corresponding to time",
+  "icon": "app.png",
+  "tags": "",
+  "supports" : ["BANGLEJS2"],  
+  "readme": "README.md",
+  "storage": [
+    {"name":"paramclock.app.js","url":"app.js"},
+    {"name":"paramclock.img","url":"app-icon.js","evaluate":true}
+  ]
+}
