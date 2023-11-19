@@ -8,8 +8,6 @@ const MONTH_NUM = [-2, 1, -4, 3, -6, 5, -3, 2, -5, 4, -7, 6];
 let drawTimeout;
 let disp_on = true;
 
-g.drawRect(0, 0, 176, 176);
-
 function queueDraw() {
   let val;
   if(disp_on) val =  15000 - (Date.now() %  15000);
@@ -162,47 +160,18 @@ let draw = function(){
   g.fillRect(xw-2, 148, xw+2, 152);
   g.fillRect(xh-2, 158, xh+2, 162);
   g.fillRect(xm-2, 168, xm+2, 172);
-  console.log(disp_on);
   queueDraw();
 };
 
-Bangle.setOptions({
-  lockTimeout: 60000,
-  backlightTimeout: 20000
-});
-
-Bangle.on('lcdPower',on=>{
-  if (on) {
-    disp_on = true;
-    console.log("ON");
-    draw();
-  } else {
-    disp_on = false;
-    console.log("OFF");
-  }
-});
-Bangle.on('lock', function(on) {
-  if (on) {
-    disp_on = true;
-    console.log("ON");
-    draw();
-  } else {
-    disp_on = false;
-    console.log("OFF");
-  }
-});
 Bangle.on('backlight', function(on) {
   if (on) {
     disp_on = true;
-    console.log("ON");
     draw();
   } else {
     disp_on = false;
-    console.log("OFF");
   }
 });
 
 Bangle.setUI("clock");
 Bangle.loadWidgets();
 draw();
-Bangle.drawWidgets();
