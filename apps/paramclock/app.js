@@ -2,7 +2,7 @@ const N = 176;
 const BIN = 0.03;
 const SIZE = Math.floor(2.0*Math.PI/BIN)+1;
 const OFSET_X = 88.5;
-const OFSET_Y = 75;
+const OFSET_Y = 85;
 const MONTH_NUM = [-2, 1, -4, 3, -6, 5, -3, 2, -5, 4, -7, 6];
 
 function sin_x1(t,a,b){
@@ -55,14 +55,14 @@ let draw = function(){
     let a = (last-(day+hour/24))/last;
     let b = MONTH_NUM[month-1];
     console.log(a, b);
-    let pos_x1 = Math.floor(60*trochoid_x1(0,a,b)+OFSET_X);
-    let pos_y1 = Math.floor(60*trochoid_x2(0,a,b)+OFSET_Y);
-    g.setColor(0.0, 1.0, 0.0);
+    let pos_x1 = Math.floor(44*trochoid_x1(0,a,b)+OFSET_X);
+    let pos_y1 = Math.floor(44*trochoid_x2(0,a,b)+OFSET_Y);
+    g.setColor(1.0, 1.0, 0.0);
 
     for(i=0; i<SIZE; i+=1){
       let t=i*BIN;
-      let pos_x2 = Math.floor(60*trochoid_x1(t,a,b)+OFSET_X);
-      let pos_y2 = Math.floor(60*trochoid_x2(t,a,b)+OFSET_Y);
+      let pos_x2 = Math.floor(44*trochoid_x1(t,a,b)+OFSET_X);
+      let pos_y2 = Math.floor(44*trochoid_x2(t,a,b)+OFSET_Y);
       if(pos_x1 != pos_x2 || pos_y1 != pos_y2){
         g.drawLine(pos_x1,pos_y1,pos_x2,pos_y2);
         pos_x1=pos_x2;
@@ -103,7 +103,7 @@ let draw = function(){
 
     let pos_x1 = Math.floor(60*func_x(0,a,b)+OFSET_X);
     let pos_y1 = Math.floor(60*func_y(0,a,b)+OFSET_Y);
-    g.setColor(1, 1, 1);
+    g.setColor(0, 1, 0);
 
     for(i=0; i<SIZE; i+=1){
       let t=i*BIN;
