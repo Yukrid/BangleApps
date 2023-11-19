@@ -139,9 +139,9 @@ let draw = function(){
   let xw = Math.floor(week*144+16);
   let xh = Math.floor((hhour*60+min)/720*144+16);
   let xm = Math.floor((min*60+sec)/3600*144+16);
-  g.drawLine(xw,150,xh,160);
-  g.drawLine(xh,160,xm,170);
-  g.drawLine(xm,170,xw,150);
+  g.drawRect(xw-2, 148, xw+2, 152);
+  g.drawRect(xh-2, 158, xh+2, 162);
+  g.drawRect(xm-2, 168, xm+2, 172);
 };
 setInterval(draw, 15000);
 
