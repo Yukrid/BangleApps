@@ -67,8 +67,7 @@ let draw = function(){
   let min = date.getMinutes();
   let sec = date.getSeconds();
   let week = date.getDay();
-  console.log(week);
-  
+
   {
     let a = (last-(day+hour/24))/last;
     let b = MONTH_NUM[month-1];
@@ -139,11 +138,6 @@ let draw = function(){
     }
   }
 
-  g.setColor(0, 0.13, 0);
-  let bat = E.getBattery();
-  g.fillRect(16, 171, 16+144*bat/100, 175);
-
-
   g.setColor(1, 1, 1);
   let hhour = hour;
   if(hour>12) hhour -= 12;
@@ -170,6 +164,19 @@ let draw = function(){
   g.fillRect(xw-2, 143, xw+2, 147);
   g.fillRect(xh-2, 153, xh+2, 157);
   g.fillRect(xm-2, 163, xm+2, 167);
+
+  g.setColor(0, 0.26, 0);
+  let bat = E.getBattery();
+  g.fillRect(16, 170, 16+72*bat/100, 175);
+
+  let steps = Bangle.getHealthStatus('day').steps;
+  if(steps<8000){
+    g.setColor(0.26, 0, 0);
+  }else{
+    g.setColor(0, 0, 0.26);
+    steps = 8000;
+  }
+  g.fillRect(88, 170, 88+72*steps/8000, 175);
 
   queueDraw();
 };
