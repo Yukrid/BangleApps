@@ -67,7 +67,7 @@ let draw = function(){
   let min = date.getMinutes();
   let sec = date.getSeconds();
   let week = date.getDay();
-  //console.log(month, day, last, hour, qhour, min, sec);
+  console.log(week);
   
   {
     let a = (last-(day+hour/24))/last;
@@ -163,7 +163,7 @@ let draw = function(){
   g.drawLine(16,145,160,145);
   g.drawLine(16,155,160,155);
   g.drawLine(16,165,160,165);
-  let xw = Math.floor(week*144+16);
+  let xw = Math.floor(week*144/6+16);
   let xh = Math.floor((hhour*60+min)/720*144+16);
   let xm = Math.floor((min*60+sec)/3600*144+16);
   g.setColor(1.0, 1.0, 1.0);
