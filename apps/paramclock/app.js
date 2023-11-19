@@ -5,6 +5,21 @@ const OFSET_X = 88.5;
 const OFSET_Y = 85;
 const MONTH_NUM = [-2, 1, -4, 3, -6, 5, -3, 2, -5, 4, -7, 6];
 
+let drawTimeout;
+let disp_on = true;
+
+function queueDraw() {
+  let val;
+  if(disp_on) val =  15000 - (Date.now() %  15000);
+  else        val = 300000 - (Date.now() % 300000)
+  if (drawTimeout) clearTimeout(drawTimeout);
+  drawTimeout = setTimeout(function() {
+    drawTimeout = undefined;
+    draw();
+  }, val);
+}
+
+
 function sin_x1(t,a,b){
   return Math.sin(t); 
 }
@@ -29,8 +44,6 @@ function trochoid_x2(t,a,b){
   return a*Math.sin(t)-(1-a)*Math.sin(b*t);
 }
 
-let drawTimeout;
-
 let draw = function(){
 
   g.clear(1);
@@ -54,10 +67,9 @@ let draw = function(){
   {
     let a = (last-(day+hour/24))/last;
     let b = MONTH_NUM[month-1];
-    console.log(a, b);
     let pos_x1 = Math.floor(44*trochoid_x1(0,a,b)+OFSET_X);
     let pos_y1 = Math.floor(44*trochoid_x2(0,a,b)+OFSET_Y);
-    g.setColor(1.0, 1.0, 0.0);
+    g.setColor(0.0, 1.0, 0.0);
 
     for(i=0; i<SIZE; i+=1){
       let t=i*BIN;
@@ -103,7 +115,7 @@ let draw = function(){
 
     let pos_x1 = Math.floor(60*func_x(0,a,b)+OFSET_X);
     let pos_y1 = Math.floor(60*func_y(0,a,b)+OFSET_Y);
-    g.setColor(0, 1, 0);
+    g.setColor(1, 1, 0);
 
     for(i=0; i<SIZE; i+=1){
       let t=i*BIN;
@@ -142,8 +154,18 @@ let draw = function(){
   g.drawRect(xw-2, 148, xw+2, 152);
   g.drawRect(xh-2, 158, xh+2, 162);
   g.drawRect(xm-2, 168, xm+2, 172);
+  
+  queueDraw();
 };
-setInterval(draw, 15000);
+
+Bangle.on('lcdPower',on=>{
+  if (on) {
+    disp_on = true;
+    draw();
+  } else {
+    disp_on = false;
+  }
+});
 
 Bangle.setUI("clock");
 Bangle.loadWidgets();
