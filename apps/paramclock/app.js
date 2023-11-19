@@ -136,7 +136,7 @@ let draw = function(){
 
   g.setColor(0.0, 0.13, 0.0);
   let bat = E.getBattery();
-  g.fillRect(16, 150, 16+144*bat/100, 170);
+  g.fillRect(16, 169, 16+144*bat/100, 175);
 
 
   g.setColor(1, 1, 1);
@@ -145,25 +145,25 @@ let draw = function(){
     let x = i*12+16;
     let pos1_y, pos2_y;
     if(i%2){
-      pos1_y = 165;
-      pos2_y = 155;
+      pos1_y = 160;
+      pos2_y = 150;
     }else{
-      pos1_y = 168;
-      pos2_y = 152;
+      pos1_y = 163;
+      pos2_y = 147;
     }
     g.drawLine(x,pos1_y,x,pos2_y);
   }
   g.setColor(0.5, 0.5, 0.5);
-  g.drawLine(16,150,160,150);
-  g.drawLine(16,160,160,160);
-  g.drawLine(16,170,160,170);
+  g.drawLine(16,145,160,145);
+  g.drawLine(16,155,160,155);
+  g.drawLine(16,165,160,165);
   let xw = Math.floor(week*144+16);
   let xh = Math.floor((hhour*60+min)/720*144+16);
   let xm = Math.floor((min*60+sec)/3600*144+16);
   g.setColor(1.0, 1.0, 1.0);
-  g.fillRect(xw-2, 148, xw+2, 152);
-  g.fillRect(xh-2, 158, xh+2, 162);
-  g.fillRect(xm-2, 168, xm+2, 172);
+  g.fillRect(xw-2, 143, xw+2, 147);
+  g.fillRect(xh-2, 153, xh+2, 157);
+  g.fillRect(xm-2, 163, xm+2, 167);
 
   queueDraw();
 };
