@@ -4,8 +4,9 @@
   "version":"0.19",
   "description": "Clock displaying parametric functions corresponding to time",
   "icon": "app.png",
-  "type": "clock",
   "tags": "clock",
+  "type": "clock",
+  "allow_emulator":true,
   "supports" : ["BANGLEJS2"],  
   "readme": "README.md",
   "storage": [
