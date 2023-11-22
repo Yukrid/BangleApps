@@ -140,7 +140,7 @@ let draw = function(){
 
   g.setColor(1, 1, 1);
   let hhour = hour;
-  if(hour>12) hhour -= 12;
+  if(hour>=12) hhour -= 12;
   for(i=0; i<13; i+=1){
     let x = i*12+16;
     let pos1_y, pos2_y;
