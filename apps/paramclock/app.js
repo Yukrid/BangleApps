@@ -165,18 +165,27 @@ let draw = function(){
   g.fillRect(xh-2, 153, xh+2, 157);
   g.fillRect(xm-2, 163, xm+2, 167);
 
-  g.setColor(0, 0.26, 0);
+
   let bat = E.getBattery();
+  if(bat<10){
+    g.setColor(0.26, 0, 0);
+  }else if(bat<40){
+    g.setColor(0.26, 0.26, 0);
+  }else{
+    g.setColor(0, 0.26, 0);
+  }
   g.fillRect(16, 170, 16+72*bat/100, 175);
 
   let steps = Bangle.getHealthStatus('day').steps;
-  if(steps<8000){
-    g.setColor(0.26, 0, 0);
+  if(steps<4000){
+    g.setColor(0.26, 0.0, 0.0);
+  }else if(steps<8000){
+    g.setColor(0.52, 0.26, 0.0);
   }else{
-    g.setColor(0, 0, 0.26);
-    steps = 8000;
+    g.setColor(0.26, 0.26, 0.0);
   }
-  g.fillRect(88, 170, 88+72*steps/8000, 175);
+  if(steps>10000) steps = 10000;
+  g.fillRect(88, 170, 88+72*steps/10000, 175);
 
   queueDraw();
 };
