@@ -174,6 +174,9 @@ let draw = function(){
   }else{
     g.setColor(0, 0.26, 0);
   }
+  if(Bangle.isCharging()){
+    g.setColor(0.26, 0.26, 0.26);
+  }
   g.fillRect(16, 170, 16+72*bat/100, 175);
 
   let steps = Bangle.getHealthStatus('day').steps;
