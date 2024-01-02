@@ -70,7 +70,7 @@ let draw = function(){
 
   {
     let a = (last-(day+hour/24))/last;
-    let b = MONTH_NUM[month-1];
+    let b = MONTH_NUM[month];
     let pos_x1 = Math.floor(44*trochoid_x1(0,a,b)+OFSET_X);
     let pos_y1 = Math.floor(44*trochoid_x2(0,a,b)+OFSET_Y);
     g.setColor(0.0, 1.0, 0.0);
